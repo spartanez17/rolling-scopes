@@ -1,0 +1,409 @@
+/* @import 'reset.css'; */
+/* @import 'animation.css'; */
+/* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif|Ropa+Sans'); */
+
+body {
+  font-family: 'Ropa Sans', sans-serif;
+  font-size: 2vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.control-width{
+  width: 88%;
+  margin: 0 auto;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.searchbox-wrapper{
+  background: rgba(117, 191, 255, 0.2);
+  border-radius: 0% 0% 30% 30%; 
+}
+
+.search-form {
+  font-size: 145%;
+  width: 80%;
+  margin: 40px auto;
+  background: #f1f1f1;
+  height: 100%;
+}
+
+.search-input {
+  width: 80%;
+  height: 100%;
+  font-size: 1em;
+  padding-left: 1%; 
+}
+
+.search-form button {
+  width: 20%;
+  height: 100%;
+  float: right;
+  background: #2196F3;
+  color: white;
+  font-size: 1em;
+  border: 2px solid #2196F3;
+  border-left: none;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background: #0b7dda;
+  border: 2px solid #0b7dda;
+}
+
+.search-form > button > i {
+  margin-left: -10%;
+}
+
+.search-form::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.videos-cont {
+  height: 80%;
+  padding: 3%;
+}
+
+.videos-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2vw;
+}
+
+.videos-item {
+  background: rgba(117, 191, 255, 0.2);
+  border-radius: 10% 0%;
+  height: 33vw;
+  cursor: pointer;
+  overflow: hidden;   
+}
+
+.video-image-wr{
+  padding-top: 5%;
+  width: 90%;
+  height: 56%;
+  margin: 2.5% auto;
+}
+
+.video-image-wr > img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.video-info {
+  width: 90%;
+  height: 32.5%;
+  margin: 2.5% auto;
+  overflow: hidden;
+}
+
+.video-info > h3 {
+  height: 38%;
+  font-size: 100%;
+  margin-bottom: 3%;
+  border-bottom: 1px rgba(0, 0, 0, 0.5) solid; 
+  overflow: hidden;
+}
+
+.video-info > p {
+  height: 20%;  
+  font-size: 0.8em;
+  margin-bottom: 3%;
+  overflow: hidden;
+}
+
+.video-info > ul{
+  height: 30%;  
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  overflow: hidden;
+}
+
+.video-info > ul > li {
+  display: inline-block;
+  font-size: 0.7em;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, .666);
+}
+
+.close {
+  padding: 0.6vw 1vw;
+  float: right;
+  font-size: 80%;
+  color: #fff;
+  border: 1px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+}
+
+.close:hover, .close:active {
+  background-color: #fff;
+  color: #000;
+}
+
+.modal-dialog {
+  width: 70%;
+  margin: 5% auto 0 auto;
+  background: #ffffff;
+}
+
+.modal-content {
+  width: 100%;
+  height: 90%;
+}
+
+.modal-body {
+  width: 90%;
+  height: 44vh;
+  min-height: 35.5vw;
+  margin: 2% auto;
+  padding-top: 0.5vw;
+}
+
+.modal-body > iframe {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px rgba(0, 0, 0, 0.5) solid; 
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 90%;
+  margin: 2% auto;  
+}
+
+.small-info {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border-bottom: 1px rgb(129, 129, 129) solid;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.title {
+  font-size: 130%;
+}
+
+.channel {
+  font-size: 100%;
+}
+
+.info-container .rating{
+  font-size: 70%;
+}
+
+.description {
+  padding: 5% 0;
+}
+
+.vertical-padding {
+  margin-bottom: 2vh;
+}
+
+.oops {
+  margin-left: 8%; 
+  font-size: 150%;
+  color: rgb(163, 163, 163);
+}
+
+i {
+  padding-right: 4%; 
+}
+
+.loader {
+  display: none;
+  position: fixed;
+  left: 0%;
+  bottom: 0%;
+  height: 16vw;
+  width: 100%;
+  min-height: 120px;
+
+}
+
+.animation-cont {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%; 
+  position: relative;
+  height: 100%;
+  min-height: 120px;
+  min-width: 120px;
+  background: rgba(117, 191, 255, 0.2);
+  border-radius: 20% 20% 0% 0%; 
+}
+
+.animation-item { 
+  display: inline-block;
+  position: absolute;
+  width: 20%; 
+  height: inherit;
+  min-height: 120px;
+  min-width: 120px; 
+  background:rgba(255, 255, 255, 0);
+  animation: rotate 1s infinite;  
+}
+
+.animation-item > i {
+  position: absolute;
+  width: 12%;
+  height: 12%;
+  left: 50%;
+  bottom: 80%;
+  border-radius: 50%;
+  background: #0b7dda;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to { 
+    transform: rotate(360deg);
+  }
+}
+
+.animation-item:nth-child(2) {
+  animation-delay:0.1s;
+  z-index: 2;
+}
+.animation-item:nth-child(3) {
+  animation-delay:0.2s;
+  z-index: 3;
+}
+.animation-item:nth-child(4) {
+  animation-delay:0.3s;
+  z-index: 4;
+}
+.animation-item:nth-child(5) {
+  animation-delay:0.4s;
+  z-index: 5;
+}
+
+
+@media (max-width: 400px) {
+  body {
+    font-family: 'Ropa Sans', sans-serif;
+    font-size: 2.5vh;
+  }
+
+  .control-width{
+    width: 99%;
+    margin: 0 auto;
+  }
+
+  .search-input {
+    width: 70%;
+  }
+
+  .search-form {
+    width: 95%;
+  }
+
+  .search-form button {
+    width: 30%;
+  }
+
+  .videos-list {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2vw;
+  }
+
+  .videos-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 31vh;
+  }
+
+  .video-image-wr{
+    position: relative;
+    top: 5%;
+    width: 90%;
+    height: 56%;
+    margin: 2.5% auto;
+  }
+
+  .video-info > h3 {
+    height: 39%;
+    font-size: 75%;
+  }
+  .video-info > p {
+    height: 16%;
+    font-size: 65%;
+  }
+
+  .modal-dialog {
+    width: 95%;
+  }
+
+  .modal-content {
+    margin: 0 auto;
+  }
+
+  .close {
+    padding: 1vw 2vw;
+    font-size: 100%;
+  }
+  .modal-body {
+    width: 95%;
+    height: 36vh;
+    max-height: 64vh;
+  }
+
+  .modal-footer{
+    margin: 10% auto;
+  }
+
+  .vertical-padding {
+    margin-bottom: 2vw;
+  }
+
+  .title {
+    height: 60%;
+    overflow: hidden;
+  }
+  
+  .channel {
+    height: 24%;
+    overflow: hidden;
+  }
+
+  .rats {
+    width: 30%;
+  }
+
+  .dislike{
+    display: none;
+  }
+}
