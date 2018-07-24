@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './Menu.css';
 import Form from '../containers/Form';
 
 class Menu extends Component {

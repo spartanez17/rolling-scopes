@@ -1,6 +1,80 @@
+.flip-container {
+    /* общие стили */
+    width: 20vh;
+    height: 20vh;
+	position: relative; /* позиционируем для дочерних блоков */
+	
+ 	transition:1s; /* скорость поворота */
+	transform-style: preserve-3d; /* стиль трансформирования 3-д */
+	
+	/* для поддержки webkit */
+   	-webkit-transition:1s;
+  	-webkit-transform-style: preserve-3d;
+  	-webkit-transform: rotateY(0deg);
+	
+	/* для поддержки moz */
+   	-moz-transition:1s;
+  	-moz-transform-style: preserve-3d;
+  	-moz-transform: rotateY(0deg);
+
+}
+
+.flipped {
+    /* общие стили */
+    transform: rotateY(180deg); /* поворачиваем на 180 градусов по горизонтали */
+    /* для поддержки webkit */
+    -webkit-transform: rotateY(180deg);
+    /* для поддержки moz */
+    -moz-transform: rotateY(180deg);
+}
+
+
 .card {
     display: inline-block;
-    width: 100px;
-    height: 100px;
-    background-color: blueviolet;
+    border: 2px solid black;
+    /* width: 200px; */
+    /* height: 200px; */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+} */
+
+
+.flip-container .back {
+	/* общие стили */
+	/* position: absolute; абсолютное позиционирование */
+  	width: 100%; /* на всю ширину родительского блока */
+	height: 100%; /* на всю высоту родительского блока */
+	backface-visibility: hidden; /* скрываем контент, который отвернут от пользователя */
+	
+	/* для поддержки webkit */
+	-webkit-backface-visibility: hidden;
+	
+	/* для поддержки moz */
+	-moz-backface-visibility: hidden;
+}
+
+.flip-container .front {
+	/* общие стили */
+    position: absolute; /* абсолютное позиционирование */
+    top:0;
+    left:0;
+  	width: 100%; /* на всю ширину родительского блока */
+	height: 100%; /* на всю высоту родительского блока */
+	backface-visibility: hidden; /* скрываем контент, который отвернут от пользователя */
+	transform: rotateY(180deg); /* отворачиваем задний блок */
+	
+	/* для поддержки webkit */
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: rotateY(180deg);
+
+	/* для поддержки moz */
+  	-moz-backface-visibility: hidden;
+	-moz-transform: rotateY(180deg);
 }

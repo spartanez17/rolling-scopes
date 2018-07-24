@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import Menu from './Menu';
-import GameBoard from '../containers/GameBoard';
+import GameBoard from '../containers/GameBoardContainer';
 import NotFound from './NotFound';
 
 class App extends Component {

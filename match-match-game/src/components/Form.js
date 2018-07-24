@@ -6,6 +6,7 @@ import './Form.css';
 class Form extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             firstName: props.firstName,
             secondName: props.secondName,
@@ -23,12 +24,11 @@ class Form extends Component {
 
     handleSubmit(event) {
         this.props.profileListener({
-            firstName: this.firstName,
-            secondName: this.secondName,
-            email: this.email,
+            firstName: this.state.firstName,
+            secondName: this.state.secondName,
+            email: this.state.email,
         });
-        //console.log()
-        this.props.difficultyListener(this.difficulty);
+        this.props.difficultyListener(this.state.difficulty);
     }
 
     render() {
@@ -55,9 +55,9 @@ class Form extends Component {
                         <label>
                             Choose difficulty:
                         <select name="difficulty" value={this.state.difficulty} onChange={this.handleChange}>
-                                <option value="EASY">Easy</option>
-                                <option value="NORMAL">Normal</option>
-                                <option value="HARD">Hard</option>
+                                <option value="4">Easy</option>
+                                <option value="6">Normal</option>
+                                <option value="8">Hard</option>
                             </select>
                         </label>
                     </li>
