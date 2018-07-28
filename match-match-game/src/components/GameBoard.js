@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import Card from '../containers/Card'
 import ModalContainer from '../containers/ModalContainer';
+import Timer from '../containers/TimerContainer';
 import './GameBoard.css'
 import array from './images.json'
-import Timer from '../containers/TimerContainer';
-import { restart } from '../actions';
+
 
 class GameBoard extends Component {
     constructor(props) {
@@ -13,13 +14,12 @@ class GameBoard extends Component {
         this.state = {
             firstName: props.firstName,
             difficulty: props.difficulty,
-            cardArray: this.retakeCards(props.difficulty),
+            cardArray: []
         };
 
         this.showScoreModal = this.showScoreModal.bind(this);
         this.restart = this.restart.bind(this);
         this.retakeCards = this.retakeCards.bind(this);
-
     }
 
     retakeCards(difficulty) {
@@ -28,14 +28,8 @@ class GameBoard extends Component {
             cardArray.push({ value: Math.random(), url: array[i].url }, { value: Math.random(), url: array[i].url });
         }
         cardArray.sort((a, b) => { return b.value - a.value });
+        
         return cardArray;
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.time === -1) {
-            console.log("componentWillReceiveProps",nextProps);
-            this.setState({ cardArray: this.retakeCards(nextProps.difficulty) });
-        }
     }
 
     showScoreModal() {
@@ -43,20 +37,35 @@ class GameBoard extends Component {
     }
 
     restart() {
-        // console.log("restart");
+        this.setState({ cardArray: this.retakeCards(this.props.difficulty) });
         this.props.restart();
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.gameIsOver(nextProps, nextState)) {
-            this.props.loadModal("END_OF_GAME_MODAL");
-        }
-        return true;
     }
 
     gameIsOver(props, state) {
         return !(props.guessed - +state.difficulty * 2 < 0);
     }
+
+    checkResultAndSend(){
+
+        // let request = new Request('http://mmg-score.herokuapp.com');
+        // fetch(request)
+        //     .then(response => {
+        //         return response.json();
+        //     })
+    }
+
+    componentWillMount(){
+        this.restart();
+    }
+
+    shouldComponentUpdate(nextProps, state) {
+        if (this.gameIsOver(nextProps, state)) {
+            this.props.loadModal("END_OF_GAME_MODAL");
+            
+        }
+        return true;
+    }
+
 
     render() {
         return (
@@ -64,9 +73,12 @@ class GameBoard extends Component {
                 <button onClick={this.showScoreModal}> Score </button>
                 <Timer />
                 <button onClick={this.restart}> Restart </button>
+                <Link to="/">
+                    <button onClick={this.handleSubmit}>Change Player Profile</button>
+                </Link>
                 <ul className="card-container">
                     {this.state.cardArray.map((el, i) =>
-                        <li className="card-container-elem" key={`${el.url}+${i}`}>
+                        <li className="card-container-elem" key={`${el.url}+${el.value}`}>
                             <Card url={el.url} index={i} />
                         </li>
                     )}

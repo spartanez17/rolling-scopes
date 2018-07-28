@@ -15,7 +15,7 @@ class Card extends Component {
 
     }
 
-    handlePickedCard(event) {
+    handlePickedCard() {
         if (this.state.status === "waiting") {
             this.props.pickCard({
                 index: this.state.index,
@@ -26,24 +26,25 @@ class Card extends Component {
     }
 
     updateStatus() {
-        this.props.updateStatus({
-            index: this.state.index,
-            url: this.state.url,
-            status: this.state.status,
-        })
+        if (this.props.pickedCards.length) {
+            this.props.updateStatus({
+                index: this.state.index,
+                url: this.state.url,
+                status: this.state.status,
+            })
+        }
     }
 
-    shouldComponentUpdate(nextProps) {
+    componentWillReceiveProps(nextProps) {
         let currElement = nextProps.pickedCards.find((el) => el.index === this.props.index);
         if (currElement) {
-            this.state.status = currElement.status;
+            this.setState({ status: currElement.status });
         }
-        return currElement !== undefined;
     }
 
     render() {
         const imageUrl = require(`../resource/${this.state.url}`);
-        const backUrl = require(`../resource/back1.png`);
+        const backUrl = require(`../resource/back2.png`);
         let style = this.state.status === "picked" ? "flipped" : "";
         return (
             <div className={`flip-container ${style}`} onTransitionEnd={this.updateStatus} onClick={this.handlePickedCard}>

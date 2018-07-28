@@ -15,8 +15,8 @@ const mapDispatchToProps = dispatch => ({
   difficultyListener: difficulty => dispatch(setDifficulty(difficulty)),
   loadModal: modalType => dispatch(loadModal(modalType)),
   restart: () => dispatch(restart()),
+  addNewResult: (result) => dispatch(result),
 })
-
 
 const GameBoardContainer = connect(
   mapStateToProps,

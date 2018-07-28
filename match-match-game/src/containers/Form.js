@@ -5,7 +5,7 @@ import Form from '../components/Form';
 
 const mapStateToProps = state => ({
     firstName: state.profile.firstName,
-    secondName: state.profile.secondName,
+    lastName: state.profile.lastName,
     email: state.profile.email,
     difficulty: state.difficulty,
 })

@@ -6,6 +6,7 @@ export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
 export const SET_TIME = 'SET_TIME';
 export const RESTART = 'RESTART';
+export const ADD_RESULT = 'ADD_RESULT';
 
 export const Difficulties = {
     EASY: '4',
@@ -44,3 +45,7 @@ export function setTime(time) {
 export function restart() {
     return { type: RESTART };
 };
+
+export function addNewResult(result) {
+    return { type: ADD_RESULT, result };
+}

@@ -2,10 +2,6 @@ import React from 'react';
 import './Modal.css'
 
 class Modal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   onOverlayClick() {
     this.props.onClose();
   }

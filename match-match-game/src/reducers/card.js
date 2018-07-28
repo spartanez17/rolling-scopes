@@ -1,20 +1,17 @@
 import { PICK_CARD, UPDATE_STATUS, RESTART } from '../actions'
 
 const initialState = {
-    transition: false,
     guessed: 0,
     pickedCards: [],
 };
 
 const gameProgress = (state = initialState, action) => {
-    let nextState;
+    let nextState = {
+        guessed: state.guessed,
+        pickedCards: [...state.pickedCards],
+    }
     switch (action.type) {
         case PICK_CARD:
-            nextState = {
-                transition: state.transition,
-                guessed: state.guessed,
-                pickedCards: [...state.pickedCards],
-            }
             if (nextState.pickedCards.length < 2 &&
                 !state.transition) {
                 nextState.pickedCards.push({
@@ -22,7 +19,6 @@ const gameProgress = (state = initialState, action) => {
                     url: action.cardInfo.url,
                     status: "picked",
                 });
-                nextState.transition = true;
             } else if (nextState.pickedCards.every(el => el.status === "waiting")) {
                 nextState.pickedCards = [
                     {
@@ -31,16 +27,10 @@ const gameProgress = (state = initialState, action) => {
                         status: "picked",
                     }
                 ];
-                nextState.transition = true;
             }
             return nextState;
 
         case UPDATE_STATUS:
-            nextState = {
-                transition: false,
-                guessed: state.guessed,
-                pickedCards: [...state.pickedCards],
-            }
             if (nextState.pickedCards.length === 2) {
                 if (nextState.pickedCards[0].url === nextState.pickedCards[1].url) {
                     nextState.pickedCards = [];
@@ -51,9 +41,8 @@ const gameProgress = (state = initialState, action) => {
             }
             return nextState;
         case RESTART:
-            nextState = initialState;
-            initialState.pickedCards = [];
-            return nextState;
+            nextState = state;
+            return initialState;
         default:
             return state
     }

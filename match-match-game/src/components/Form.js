@@ -6,10 +6,10 @@ import './Form.css';
 class Form extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        // console.log(props);
         this.state = {
             firstName: props.firstName,
-            secondName: props.secondName,
+            lastName: props.secondName,
             email: props.email,
             difficulty: props.difficulty,
         };

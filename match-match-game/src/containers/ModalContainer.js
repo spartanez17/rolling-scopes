@@ -18,9 +18,7 @@ const ModalContainer = (props) => {
     if (!props.modalType) {
         return null;
     }
-
     const SpecificModal = MODAL_COMPONENTS[props.modalType];
-    console.log(SpecificModal);
     return <SpecificModal />;
 };
 
